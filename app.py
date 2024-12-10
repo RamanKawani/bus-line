@@ -1,7 +1,23 @@
+import subprocess
+import sys
+
+# Function to install a package if it's not already installed
+def install_package(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Check if folium is installed, if not, install it
+try:
+    import folium
+except ImportError:
+    print("folium not found, installing...")
+    install_package("folium")
+    import folium
+
+# Import required libraries after installing
 import streamlit as st
 import pandas as pd
-import folium
 from folium.plugins import MarkerCluster
+from streamlit_folium import folium_static
 
 # Load bus line data (ensure your CSV has latitudes and longitudes)
 data = pd.read_csv('bus_lines.csv')
@@ -19,7 +35,6 @@ def create_map(bus_line):
 
     # Add bus stops as markers
     for index, row in bus_data.iterrows():
-        # You can add more stops and customize marker info
         folium.Marker(
             location=[row['Stop 1 Lat'], row['Stop 1 Long']],
             popup=f"Stop 1: {row['Stops']}",
@@ -48,5 +63,4 @@ st.write("### Bus Stops on Map")
 bus_map = create_map(bus_line)
 
 # Display the map in the app
-st.map(bus_map)
-
+folium_static(bus_map)
