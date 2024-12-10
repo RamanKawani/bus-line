@@ -1,0 +1,4 @@
+Bus Line,Start,End,Stops,Timetable
+Line 1,New City,Erbil City Center,"Stop 1, Stop 2, Stop 3","7:00 AM - 9:00 PM"
+Line 2,Erbil City Center,Airport,"Stop 1, Stop 2, Stop 3","6:30 AM - 10:00 PM"
+Line 3,Kirkuk Road,Erbil City Center,"Stop A, Stop B, Stop C","8:00 AM - 10:00 PM"
